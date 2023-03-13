@@ -33,6 +33,7 @@ stages:
             ARM_CLIENT_ID: $(client_id)
             ARM_CLIENT_SECRET: $(client_secret)
             ARM_ACCESS_KEY: $(backend_access_key)
+            ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)         
 
         - script: |
@@ -49,6 +50,7 @@ stages:
             ARM_CLIENT_ID: $(client_id)
             ARM_CLIENT_SECRET: $(client_secret)
             ARM_ACCESS_KEY: $(backend_access_key)
+            ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)                       
 
 - stage: TF_APPLY
@@ -80,6 +82,7 @@ stages:
             ARM_CLIENT_ID: $(client_id)
             ARM_CLIENT_SECRET: $(client_secret)
             ARM_ACCESS_KEY: $(backend_access_key)
+            ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
 
         - script: |
@@ -96,4 +99,5 @@ stages:
             ARM_CLIENT_ID: $(client_id)
             ARM_CLIENT_SECRET: $(client_secret)
             ARM_ACCESS_KEY: $(backend_access_key)
+            ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)   
