@@ -31,6 +31,7 @@ stages:
             ARM_USE_MSI: true
             ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
             ARM_SUBSCRIPTION_ID: $(subscription_id)
+            ARM_ACCESS_KEY: $(backend_access_key)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)         
 
         - script: |
@@ -45,6 +46,7 @@ stages:
             ARM_USE_MSI: true
             ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
             ARM_SUBSCRIPTION_ID: $(subscription_id)
+            ARM_ACCESS_KEY: $(backend_access_key)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)                       
 
 - stage: TF_APPLY
@@ -74,6 +76,7 @@ stages:
             ARM_USE_MSI: true
             ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
             ARM_SUBSCRIPTION_ID: $(subscription_id)
+            ARM_ACCESS_KEY: $(backend_access_key)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
 
         - script: |
@@ -88,4 +91,5 @@ stages:
             ARM_USE_MSI: true
             ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
             ARM_SUBSCRIPTION_ID: $(subscription_id)
+            ARM_ACCESS_KEY: $(backend_access_key)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)   
