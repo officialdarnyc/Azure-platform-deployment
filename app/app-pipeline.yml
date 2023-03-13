@@ -1,0 +1,19 @@
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'ic-skedda'
+    appType: 'webAppLinux'
+    appName: 'aspnetcoreapp'
+    package: '$(System.DefaultWorkingDirectory)/app/aspnetcoreapp.zip'
+    appSettings: -DbConnectionString <db-connection-string>

@@ -1,0 +1,91 @@
+trigger:
+  - master
+
+variables:
+- group: SKEDDA-DOTNET
+
+stages:
+- stage: TF_PLAN
+  pool:
+    vmImage: ubuntu-latest
+  condition: always()
+  jobs:
+    - job: Infrastructure_Terraform_Plan
+      displayName: "Infrastructure Terraform Plan"
+      steps:
+        - script: |
+            cd $(Build.Repository.LocalPath)/infrastructure
+            pwd
+            wget --quiet "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+            unzip "terraform_${TF_VERSION}_linux_amd64.zip"
+            rm "terraform_${TF_VERSION}_linux_amd64.zip"
+          displayName: Install Terraform
+
+        - script: |
+            export TF_IN_AUTOMATION=true
+            cd $(Build.Repository.LocalPath)/infrastructure
+            ./terraform validate
+            ./terraform init
+          displayName: Terraform Initialize
+          env:
+            ARM_USE_MSI: true
+            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_SUBSCRIPTION_ID: $(subscription_id)
+            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)         
+
+        - script: |
+            export TF_IN_AUTOMATION=true
+            cd $(Build.Repository.LocalPath)/infrastructure
+            ./terraform validate
+            ./terraform init
+            ./terraform plan -out=terraform.tfplan \
+            -var-file=terraform.tfvars
+          displayName: Terraform Plan
+          env:
+            ARM_USE_MSI: true
+            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_SUBSCRIPTION_ID: $(subscription_id)
+            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)                       
+
+- stage: TF_APPLY
+  pool: 
+    vmImage: ubuntu-latest
+  dependsOn: [TF_PLAN]
+  condition: succeeded('TF_PLAN')
+  jobs:
+    - job: Infrastructure_Terraform_Apply
+      displayName: "Infrastructure Terraform Apply"
+      timeoutInMinutes: 150
+      steps:
+        - script: |
+            cd $(Build.Repository.LocalPath)/infrastructure
+            wget --quiet "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+            unzip "terraform_${TF_VERSION}_linux_amd64.zip"
+            rm "terraform_${TF_VERSION}_linux_amd64.zip"
+          displayName: Install Terraform
+
+        - script: |
+            export TF_IN_AUTOMATION=true
+            cd $(Build.Repository.LocalPath)/infrastructure
+            ./terraform validate
+            ./terraform init
+          displayName: Terraform Initialize
+          env:
+            ARM_USE_MSI: true
+            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_SUBSCRIPTION_ID: $(subscription_id)
+            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
+
+        - script: |
+            export TF_IN_AUTOMATION=true
+            cd $(Build.Repository.LocalPath)/infrastructure
+            ./terraform validate
+            ./terraform init
+            ./terraform apply -auto-approve \
+            -var-file=terraform.tfvars
+          displayName: Terraform Apply
+          env:
+            ARM_USE_MSI: true
+            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_SUBSCRIPTION_ID: $(subscription_id)
+            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)   
