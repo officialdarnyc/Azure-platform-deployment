@@ -40,7 +40,7 @@ stages:
             ./terraform validate
             ./terraform init
             ./terraform plan -out=terraform.tfplan \
-            -var-file=terraform.tfvars
+            -var-file="terraform.tfvars"
           displayName: Terraform Plan
           env:
             ARM_USE_MSI: true
@@ -85,7 +85,7 @@ stages:
             ./terraform validate
             ./terraform init
             ./terraform apply -auto-approve \
-            -var-file=terraform.tfvars
+            -var-file="terraform.tfvars"
           displayName: Terraform Apply
           env:
             ARM_USE_MSI: true
