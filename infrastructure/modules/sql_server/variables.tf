@@ -40,7 +40,6 @@ variable max_size_gb {
 variable sku_name {
     type = string
     description = "Specifies the name of the SKU used by the database"
-    default = "Basic"
 }
 
 variable sql_administrator_login {

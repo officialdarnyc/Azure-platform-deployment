@@ -36,6 +36,12 @@ variable max_size_gb {
     description = "The max size of the database in gigabytes."
 }
 
+variable sku_name {
+    type = string
+    description = "Specifies the name of the SKU used by the database"
+    default = "S0"
+}
+
 variable "secure_resources" {
     type = bool
     default = true 
