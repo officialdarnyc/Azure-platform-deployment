@@ -36,7 +36,23 @@ stages:
             ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
             TF_VAR_sql_admin_username: $(sql_admin_username)
-            TF_VAR_sql_admin_password: $(sql_admin_password)        
+            TF_VAR_sql_admin_password: $(sql_admin_password)
+
+        - script: |
+            export TF_IN_AUTOMATION=true
+            cd $(Build.Repository.LocalPath)/infrastructure
+            ./terraform import -var-file="terraform.tfvars" module.appservice_vnet.azurerm_subnet.snet /subscriptions/${SUBSCRIPTION_ID}/resourceGroups/ic/providers/Microsoft.Network/virtualNetworks/ic-skedda-vnet/subnets/ic-skedda-snet
+          displayName: Terraform Import subnet
+          env:
+            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_SUBSCRIPTION_ID: $(subscription_id)
+            ARM_CLIENT_ID: $(client_id)
+            ARM_CLIENT_SECRET: $(client_secret)
+            ARM_ACCESS_KEY: $(backend_access_key)
+            ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
+            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
+            TF_VAR_sql_admin_username: $(sql_admin_username)
+            TF_VAR_sql_admin_password: $(sql_admin_password)                  
 
         - script: |
             export TF_IN_AUTOMATION=true
