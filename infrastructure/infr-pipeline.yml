@@ -34,7 +34,9 @@ stages:
             ARM_CLIENT_SECRET: $(client_secret)
             ARM_ACCESS_KEY: $(backend_access_key)
             ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
-            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)         
+            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
+            TF_VAR_sql_admin_username: $(sql_admin_username)
+            TF_VAR_sql_admin_password: $(sql_admin_password)        
 
         - script: |
             export TF_IN_AUTOMATION=true
@@ -51,7 +53,9 @@ stages:
             ARM_CLIENT_SECRET: $(client_secret)
             ARM_ACCESS_KEY: $(backend_access_key)
             ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
-            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)                       
+            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
+            TF_VAR_sql_admin_username: $(sql_admin_username)
+            TF_VAR_sql_admin_password: $(sql_admin_password)                                   
 
 - stage: TF_APPLY
   pool: 
@@ -84,6 +88,8 @@ stages:
             ARM_ACCESS_KEY: $(backend_access_key)
             ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
+            TF_VAR_sql_admin_username: $(sql_admin_username)
+            TF_VAR_sql_admin_password: $(sql_admin_password)             
 
         - script: |
             export TF_IN_AUTOMATION=true
@@ -100,4 +106,6 @@ stages:
             ARM_CLIENT_SECRET: $(client_secret)
             ARM_ACCESS_KEY: $(backend_access_key)
             ARM_SKIP_PROVIDER_REGISTRATION: $(tf_provider_registration)
-            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)   
+            AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
+            TF_VAR_sql_admin_username: $(sql_admin_username)
+            TF_VAR_sql_admin_password: $(sql_admin_password)                
