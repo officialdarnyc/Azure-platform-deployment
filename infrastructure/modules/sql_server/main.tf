@@ -4,7 +4,7 @@ locals {
 }
 
 resource "azurerm_mssql_server" "server" {
-  name                         = var.db_server_name
+  name                         = lower(var.db_server_name)
   resource_group_name          = var.resource_group_name
   location                     = var.location
   version                      = var.server_version
