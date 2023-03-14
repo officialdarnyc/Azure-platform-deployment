@@ -37,7 +37,7 @@ resource "azurerm_mssql_database" "db" {
   license_type                     = var.license_type
   max_size_gb                      = var.max_size_gb
   create_mode                      = "Default"
-  read_scale                       = true
+  read_scale                       = false
   sku_name                         = var.sku_name  
   zone_redundant                   = var.zone_redundant
 
