@@ -37,7 +37,7 @@ module "sqlserver_db" {
     auditstore_primary_blob_endpoint   = module.storage_account.primary_blob_endpoint
     auditstore_primary_access_key      = module.storage_account.primary_access_key
 
-    subnet_id                          = module.appservice_vnet.subnet.*.id[0]
+    subnet_id                          = module.appservice_vnet.snet_id
     secure_resources                   = var.secure_resources
 
     resource_group_name                = local.resource_group_name

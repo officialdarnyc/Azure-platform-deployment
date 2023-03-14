@@ -5,10 +5,13 @@ resource "azurerm_virtual_network" "vnet" {
     location            = var.location
     resource_group_name = var.resource_group_name
 
-    subnet {
-        name           = var.subnet_name
-        address_prefix = "10.0.1.0/24"
-    }
-
     tags               = var.tags
+}
+
+resource "azurerm_subnet" "snet" {
+  name                 = var.subnet_name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.0.1.0/24"]
+
 }

@@ -51,7 +51,6 @@ resource "azurerm_mssql_firewall_rule" "fw" {
   start_ip_address    = var.secure_resources ? local.ip_address  : var.start_ip_address
   end_ip_address      = var.secure_resources ? local.ip_address  : var.end_ip_address
 
-  tags                = var.tags  
 }
 
 resource "azurerm_mssql_server_extended_auditing_policy" "audit_policy" {
@@ -61,7 +60,6 @@ resource "azurerm_mssql_server_extended_auditing_policy" "audit_policy" {
   storage_account_access_key_is_secondary = false
   retention_in_days                       = var.auditstore_retention_days
 
-  tags                                    = var.tags  
 }
 
 resource "azurerm_mssql_database_extended_auditing_policy" "audit_policy" {
@@ -70,6 +68,4 @@ resource "azurerm_mssql_database_extended_auditing_policy" "audit_policy" {
   storage_account_access_key              = var.auditstore_primary_access_key
   storage_account_access_key_is_secondary = false
   retention_in_days                       = var.auditstore_retention_days
-
-  tags                                    = var.tags  
 }
