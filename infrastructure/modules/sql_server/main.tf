@@ -46,7 +46,6 @@ resource "azurerm_mssql_database" "db" {
 
 resource "azurerm_mssql_firewall_rule" "fw" {
   name                = "${var.db_name}-fwrules"
-  resource_group_name = var.resource_group_name
   server_id           = azurerm_mssql_server.server.id
   start_ip_address    = var.secure_resources ? local.ip_address  : var.start_ip_address
   end_ip_address      = var.secure_resources ? local.ip_address  : var.end_ip_address
