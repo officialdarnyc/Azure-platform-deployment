@@ -1,6 +1,6 @@
 locals {
   resource_group_name = "ic"
-  location            = "eastus2"
+  location            = "eastus"
   tags                = {
     environment       = "ic"
   }
