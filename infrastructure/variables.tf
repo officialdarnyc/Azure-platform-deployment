@@ -83,7 +83,3 @@ variable connection_string_value {
   description = "(optional) The connection string value"
   sensitive = true
 }
-
-variable site_config {
-  default = null
-}
