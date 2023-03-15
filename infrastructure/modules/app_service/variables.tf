@@ -1,13 +1,19 @@
 variable "resource_group_name" {
-  description="The name of the resource group in which to create the KeyVault."
+  type = string
+  description = "The name of the resource group"
 }
 
 variable "location" {
-  description="Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created."
+  type = string
+  description = "Specifies the supported Azure location where the resource exists"
 }
 
-variable "appsvc_name" { }
-variable "ase_paln_id" { }        
+variable "appsvc_name" {
+  type = string
+  description = "(required) App service name"
+}
+
+variable "ase_plan_id" { }        
 variable "tags" { }
 
 variable "app_settings" {
@@ -16,32 +22,44 @@ variable "app_settings" {
     default     = {}
 }
 
-# Providing argument options defaulting to the Azure default
-variable https_only { default = null }
-variable app_service_enabled { default = null }
-variable client_cert_enabled { default = null }
-variable client_affinity_enabled { default = null }
+variable https_only {
+  type = bool
+  description = "(optional) Should the Linux Web App require HTTPS connections"
+}
+variable app_service_enabled {
+  type = bool
+  description = "(optional) Should the Linux Web App be enabled"
+}
 
-variable private_link_ind { default = false }
-variable private_link_name { default = null }
-variable private_link_subnet_id { default = null }
-variable integration_subnet_id { default = null }
+variable client_certificate_enabled {
+  type = bool
+  description = "(optional) Should the Linux Web App require a client certificate"
+  default = null 
+}
+variable client_affinity_enabled {
+  type = bool
+  description = "(optional) Should the Linux Web App be enabled to support client affinity"
+  default = null 
+}
+
+variable connection_string_name {
+  type = string
+  description = "(optional) The name of the connection string"
+}
+
+variable db_type {
+  type = string
+  description = "(optional) The database type. Possible values: 'SQLServer', MySQL', 'PostgreSQL' or 'SQLAzure'"
+}
+
+variable connection_string_value {
+  type = string
+  description = "(optional) The connection string value"
+}
 
 
 variable site_config {
   default = null
-}
-
-# UserAssigned is recommended -- SystemAssigned used as it was the default
-variable identity {
-  type = object({
-    type = string
-    identity_ids = list(string)
-  })
-  default = {
-    type = "SystemAssigned"
-    identity_ids = null
-  }
 }
 
 

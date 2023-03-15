@@ -16,7 +16,10 @@ variable cluster_setting_map {
   default = {}
 }
 
-variable internal_load_balancing_mode { default = "Web, Publishing"}
+variable internal_load_balancing_mode {
+  type = string
+  default = "Web, Publishing"
+}
 
 variable tags {
   description = "A mapping of tags to assign to the resource."

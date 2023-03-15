@@ -15,9 +15,11 @@ variable "virtual_network_name" {
   description = "Azure Virtual Network name"
 }
 
-variable "subnet_name" {
-  type = string
-  description = "Subnet name"
+variable "subnets" {
+  type = map(object({
+    address_prefixes = list(string)
+  }))
+  description = "Subnets within the VNET"
 }
 
 variable "tags" {

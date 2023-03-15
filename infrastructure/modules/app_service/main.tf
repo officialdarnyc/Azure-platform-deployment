@@ -4,23 +4,29 @@ locals {
       for category in var.diagnostic_log_category_list:
           category => category
   }
-  identity_map = {one = "one"}
   site_config_map = var.site_config != null ? {one = "one"} : {}
   cors_config_map = try(var.site_config["allowed_origins"], null) != null ? {one = "one"} : {}
 }
 
-resource "azurerm_app_service" "appsvc" {
+resource "azurerm_linux_web_app" "appsvc" {
   name                      = var.appsvc_name
   location                  = var.location
   resource_group_name       = var.resource_group_name
-  app_service_plan_id       = var.ase_plan_id
+  service_plan_id           = var.ase_plan_id
   tags                      = var.tags
 
   app_settings              = var.app_settings
   https_only                = var.https_only
   enabled                   = var.app_service_enabled
-  client_cert_enabled       = var.client_cert_enabled
+  client_certificate_enabled = var.client_cert_enabled
   client_affinity_enabled   = var.client_affinity_enabled
+  
+  connection_string {
+    name  = var.connection_string_name
+    type  = var.db_type
+    value = var.connection_string_value
+
+  }
 
   dynamic site_config {
     for_each = local.site_config_map
@@ -50,13 +56,8 @@ resource "azurerm_app_service" "appsvc" {
     }
   }
 
-  # UserAssigned identities are recommended. SystemAssigned is still the default
-  dynamic identity {
-    for_each = local.identity_map
-    content {
-      type = var.identity["type"]
-      identity_ids = var.identity["identity_ids"]
-    }
+  identity {
+    type = "SystemAssigned"
   }
 }
 
@@ -64,7 +65,7 @@ resource "azurerm_app_service" "appsvc" {
 resource "azurerm_monitor_diagnostic_setting" "app_service_diag" {
   name                            = var.diagnostics_name
   count                           = var.log_analytics_workspace_id == "" ? 0 : 1
-  target_resource_id              = azurerm_app_service.appsvc.id
+  target_resource_id              = azurerm_linux_web_app.appsvc.id
   log_analytics_workspace_id      = var.log_analytics_workspace_id
 
   metric {
