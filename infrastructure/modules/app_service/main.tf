@@ -31,21 +31,7 @@ resource "azurerm_linux_web_app" "appsvc" {
   dynamic site_config {
     for_each = local.site_config_map
     content {
-      always_on                 = try(var.site_config["always_on"], null)
-      app_command_line          = try(var.site_config["app_command_line"], null)
-      dotnet_framework_version  = try(var.site_config["dotnet_framework_version"], null)
-      ftps_state                = try(var.site_config["ftps_state"], null)
-      health_check_path         = try(var.site_config["health_check_path"], null)
-      number_of_workers         = try(var.site_config["number_of_workers"], null)
-      http2_enabled             = try(var.site_config["http2_enabled"], null)
-      java_version              = try(var.site_config["java_version"], null)
-      java_container            = try(var.site_config["java_container"], null)
-      java_container_version    = try(var.site_config["java_container_version"], null)
-      linux_fx_version          = try(var.site_config["linux_fx_version"], null)
-      windows_fx_version        = try(var.site_config["windows_fx_version"], null)
-      min_tls_version           = try(var.site_config["min_tls_version"], null) 
-      scm_type                  = try(var.site_config["scm_type"], null) 
-      websockets_enabled        = try(var.site_config["websockets_enabled"], null) 
+      always_on  = try(var.site_config["always_on"], null)
 
       dynamic cors {
         for_each = local.cors_config_map
