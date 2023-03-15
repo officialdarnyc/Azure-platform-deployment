@@ -48,11 +48,6 @@ variable sql_sku_name {
     default = "S0"
 }
 
-variable "secure_resources" {
-    type = bool
-    default = true 
-}
-
 variable app_service_environment_name {
   type = string
   description = "App Service Environment name"

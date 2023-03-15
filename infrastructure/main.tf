@@ -39,7 +39,6 @@ module "sqlserver_db" {
     auditstore_primary_access_key      = module.storage_account.primary_access_key
 
     subnet_id                          = module.vnet.snet_id[0]
-    secure_resources                   = var.secure_resources
 
     resource_group_name                = local.resource_group_name
     location                           = local.location
