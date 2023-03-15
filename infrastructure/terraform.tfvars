@@ -2,12 +2,17 @@ virtual_network_name   = "ic-skedda-vnet"
 subnets = {
   "IntegrationSubnet" = {
     address_prefixes           = [ "10.0.1.0/24" ]
+    service_endpoints          = ["Microsoft.Sql"]
     delegation_name            = "vnet-delegation"
     service_delegation_name    = "Microsoft.Web/serverFarms"
     service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
   },
   "asesubnet" = {
-    address_prefixes = [ "10.0.2.0/24" ]
+    address_prefixes          = [ "10.0.2.0/24" ]
+    service_endpoints          =  ["Microsoft.Sql"]    
+    delegation_name            = "asesubnet-delegation"
+    service_delegation_name    = "Microsoft.Web/hostingEnvironments"
+    service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]    
   }
 }
 
