@@ -1,7 +1,3 @@
-locals {
-  fqdn        = azurerm_private_endpoint.server.custom_dns_configs[0].fqdn
-  ip_address  = azurerm_private_endpoint.server.custom_dns_configs[0].ip_addresses[0]
-}
 
 resource "azurerm_mssql_server" "server" {
   name                         = lower(var.db_server_name)
@@ -13,21 +9,6 @@ resource "azurerm_mssql_server" "server" {
   connection_policy            = var.connection_policy
   
   tags                         = var.tags
-}
-
-resource "azurerm_private_endpoint" "server" {
-  name                = "PRIVATELINK-SQL-${upper(azurerm_mssql_server.server.name)}"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  subnet_id           = var.subnet_id
-
-  private_service_connection {
-    name                           = azurerm_mssql_server.server.name
-    private_connection_resource_id = azurerm_mssql_server.server.id
-    is_manual_connection           = false
-    subresource_names              = ["sqlServer"]
-  }
-  tags                             = var.tags  
 }
 
 resource "azurerm_mssql_database" "db" {
@@ -44,12 +25,10 @@ resource "azurerm_mssql_database" "db" {
   tags                             = var.tags
 }
 
-resource "azurerm_mssql_firewall_rule" "fw" {
-  name                = "${var.db_name}-fwrules"
-  server_id           = azurerm_mssql_server.server.id
-  start_ip_address    = var.secure_resources ? local.ip_address  : var.start_ip_address
-  end_ip_address      = var.secure_resources ? local.ip_address  : var.end_ip_address
-
+resource "azurerm_mssql_virtual_network_rule" "db" {
+  name                             = "${var.db_name}-vnetrules"
+  server_id                        = azurerm_mssql_server.server.id
+  subnet_id                        = var.subnet_id
 }
 
 resource "azurerm_mssql_server_extended_auditing_policy" "audit_policy" {

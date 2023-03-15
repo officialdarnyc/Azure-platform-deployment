@@ -15,4 +15,12 @@ resource "azurerm_subnet" "snet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = each.value.address_prefixes
 
+  delegation {
+    name = each.value.delegation_name
+    service_delegation {
+      name = each.value.service_delegation_name
+      actions = each.value.service_delegation_actions
+    }
+  }
+
 }

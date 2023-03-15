@@ -20,6 +20,7 @@ resource "azurerm_linux_web_app" "appsvc" {
   enabled                    = var.app_service_enabled
   client_certificate_enabled = var.client_certificate_enabled
   client_affinity_enabled    = var.client_affinity_enabled
+  virtual_network_subnet_id  = var.vnet_subnet_id
   
   connection_string {
     name  = var.connection_string_name

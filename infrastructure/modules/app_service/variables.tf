@@ -42,6 +42,11 @@ variable client_affinity_enabled {
   default = null 
 }
 
+variable vnet_subnet_id {
+  type = string
+  description = "(optional) VNet Subnet ID"
+}
+
 variable connection_string_name {
   type = string
   description = "(optional) The name of the connection string"

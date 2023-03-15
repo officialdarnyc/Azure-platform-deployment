@@ -33,7 +33,7 @@ module "sqlserver_db" {
     sql_administrator_login            = var.sql_admin_username
     sql_administrator_login_password   = var.sql_admin_password
     max_size_gb                        = var.max_size_gb
-    sku_name                           = var.sku_name
+    sku_name                           = var.sql_sku_name
 
     auditstore_primary_blob_endpoint   = module.storage_account.primary_blob_endpoint
     auditstore_primary_access_key      = module.storage_account.primary_access_key
@@ -68,7 +68,7 @@ module "app_service_plan" {
     resource_group_name           = local.resource_group_name
     location                      = local.location
     os_type                       = "Linux"
-    sku_name                      = "I1"
+    sku_name                      = "S1"
 
     tags                          = local.tags
     
@@ -87,6 +87,7 @@ module "app_service" {
     https_only                    = false
     client_affinity_enabled       = false
     client_certificate_enabled    = false
+    vnet_subnet_id                = module.vnet.snet_id[0]
     connection_string_name        = var.connection_string_name
     db_type                       = var.db_type
     connection_string_value       = var.connection_string_value

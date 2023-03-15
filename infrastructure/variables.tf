@@ -7,6 +7,9 @@ variable "virtual_network_name" {
 variable "subnets" {
   type = map(object({
     address_prefixes = list(string)
+    delegation_name = string
+    service_delegation_name = string
+    service_delegation_actions = list(string)
   }))
   description = "Subnets within the VNET"
 }
@@ -39,7 +42,7 @@ variable max_size_gb {
     description = "The max size of the database in gigabytes."
 }
 
-variable sku_name {
+variable sql_sku_name {
     type = string
     description = "Specifies the name of the SKU used by the database"
     default = "S0"

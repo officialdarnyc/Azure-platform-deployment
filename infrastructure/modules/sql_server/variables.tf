@@ -54,26 +54,24 @@ variable connection_policy {
   description = "The connection policy the server will use"
   default = "Default"
 }
-variable start_ip_address {
-  description = "Defines the start IP address used in your database firewall rule."
-  default     = "0.0.0.0"
+
+variable auditstore_primary_blob_endpoint {
+  type = string
+  description = "The primary blob endpoint of the audit store."
+}
+variable auditstore_primary_access_key {
+  type = string
+  description = "The primary access key of the audit store."
+}
+variable auditstore_retention_days {
+  type = number
+  description = "The number of days to retain audit logs in the audit store."
+  default = 20 
 }
 
-variable end_ip_address {
-  description = "Defines the end IP address used in your database firewall rule."
-  default     = "0.0.0.0"
-}
-
-variable auditstore_primary_blob_endpoint {}
-variable auditstore_primary_access_key {}
-variable auditstore_retention_days { default = 20 }
 variable subnet_id {
     type = string
     description = "Azure subnet ID"
-}
-variable secure_resources {
-    type = bool
-    default = true 
 }
 
 variable tags {
