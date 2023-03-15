@@ -9,17 +9,17 @@ locals {
 }
 
 resource "azurerm_linux_web_app" "appsvc" {
-  name                      = var.appsvc_name
-  location                  = var.location
-  resource_group_name       = var.resource_group_name
-  service_plan_id           = var.ase_plan_id
-  tags                      = var.tags
+  name                       = var.appsvc_name
+  location                   = var.location
+  resource_group_name        = var.resource_group_name
+  service_plan_id            = var.ase_plan_id
+  tags                       = var.tags
 
-  app_settings              = var.app_settings
-  https_only                = var.https_only
-  enabled                   = var.app_service_enabled
-  client_certificate_enabled = var.client_cert_enabled
-  client_affinity_enabled   = var.client_affinity_enabled
+  app_settings               = var.app_settings
+  https_only                 = var.https_only
+  enabled                    = var.app_service_enabled
+  client_certificate_enabled = var.client_certificate_enabled
+  client_affinity_enabled    = var.client_affinity_enabled
   
   connection_string {
     name  = var.connection_string_name
