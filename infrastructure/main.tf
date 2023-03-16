@@ -81,6 +81,7 @@ module "app_service" {
     appsvc_name                   = var.appsvc_name 
     ase_plan_id                   = module.app_service_plan.asp_id
     app_settings                  = {}
+    site_config                   = var.site_config
     app_service_enabled           = true    
     https_only                    = false
     client_affinity_enabled       = false
