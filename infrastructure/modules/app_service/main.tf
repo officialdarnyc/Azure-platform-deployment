@@ -25,6 +25,14 @@ resource "azurerm_linux_web_app" "appsvc" {
   auth_settings {
     enabled = var.enable_auth_settings
   }
+
+  ip_restriction {
+    action                      = "Allow"
+    ip_address                  = "0.0.0.0"
+    name                        = "Allow Public Internet"
+    priority                    = 100
+    virtual_network_subnet_id   = var.vnet_subnet_id
+  }
   
   connection_string {
     name  = var.connection_string_name
