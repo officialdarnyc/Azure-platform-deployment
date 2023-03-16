@@ -52,6 +52,18 @@ variable enable_auth_settings {
   description = "(optional) Should the Linux Web App enable authentication"
 }
 
+variable ad_client_id {
+  type = string
+  description = "(optional) Azure Active Directory Client ID"
+  sensitive = true
+}
+
+variable ad_client_secret {
+  type = string
+  description = "(optional) Azure Active Directory Client Secret"
+  sensitive = true
+}
+
 variable connection_string_name {
   type = string
   description = "(optional) The name of the connection string"

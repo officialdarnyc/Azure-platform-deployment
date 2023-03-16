@@ -23,15 +23,12 @@ resource "azurerm_linux_web_app" "appsvc" {
   virtual_network_subnet_id  = var.vnet_subnet_id
 
   auth_settings {
-    enabled = var.enable_auth_settings
-  }
-
-  ip_restriction {
-    action                      = "Allow"
-    ip_address                  = "0.0.0.0"
-    name                        = "Allow Public Internet"
-    priority                    = 100
-    virtual_network_subnet_id   = var.vnet_subnet_id
+    enabled                        = var.enable_auth_settings
+    unauthenticated_client_action  = "AllowAnonymous"
+    active_directory   {
+      client_id      = var.ad_client_id
+      client_secret  = var.ad_client_secret
+    }
   }
   
   connection_string {

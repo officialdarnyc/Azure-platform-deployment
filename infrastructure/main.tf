@@ -87,7 +87,9 @@ module "app_service" {
     client_affinity_enabled       = false
     client_certificate_enabled    = false
     vnet_subnet_id                = module.vnet.snet_id[0]
-    enable_auth_settings          = false
+    enable_auth_settings          = true
+    ad_client_id                  = var.ad_client_id
+    ad_client_secret              = var.ad_client_secret
     connection_string_name        = var.connection_string_name
     db_type                       = var.db_type
     connection_string_value       = var.connection_string_value
