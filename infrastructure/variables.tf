@@ -54,7 +54,6 @@ variable app_service_environment_name {
   description = "App Service Environment name"
 }
 variable cluster_setting_map {}
-variable site_config {}
 variable log_analytics_workspace_id { default = "" }
 
 variable use_ase {

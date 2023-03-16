@@ -47,6 +47,11 @@ variable vnet_subnet_id {
   description = "(optional) VNet Subnet ID"
 }
 
+variable enable_auth_settings {
+  type = bool
+  description = "(optional) Should the Linux Web App enable authentication"
+}
+
 variable connection_string_name {
   type = string
   description = "(optional) The name of the connection string"

@@ -81,12 +81,12 @@ module "app_service" {
     appsvc_name                   = var.appsvc_name 
     ase_plan_id                   = module.app_service_plan.asp_id
     app_settings                  = {}
-    site_config                   = var.site_config
     app_service_enabled           = true    
     https_only                    = false
     client_affinity_enabled       = false
     client_certificate_enabled    = false
     vnet_subnet_id                = module.vnet.snet_id[0]
+    enable_auth_settings          = false
     connection_string_name        = var.connection_string_name
     db_type                       = var.db_type
     connection_string_value       = var.connection_string_value

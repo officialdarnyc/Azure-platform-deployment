@@ -28,7 +28,3 @@ sql_sku_name           = "S0"
 appsvc_name            = "ikedotnetapp01"
 connection_string_name = "DbConnectionString"
 db_type                = "SQLServer"
-
-site_config = {
-    always_on = "false"
-}
