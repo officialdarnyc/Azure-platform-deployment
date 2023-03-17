@@ -24,11 +24,6 @@ resource "azurerm_linux_web_app" "appsvc" {
 
   auth_settings {
     enabled                        = var.enable_auth_settings
-    unauthenticated_client_action  = "AllowAnonymous"
-    active_directory   {
-      client_id      = var.ad_client_id
-      client_secret  = var.ad_client_secret
-    }
   }
   
   connection_string {
@@ -41,7 +36,7 @@ resource "azurerm_linux_web_app" "appsvc" {
   dynamic site_config {
     for_each = local.site_config_map
     content {
-      always_on  = try(var.site_config["always_on"], null)
+      always_on            = try(var.site_config["always_on"], null)
 
       dynamic cors {
         for_each = local.cors_config_map
@@ -49,6 +44,10 @@ resource "azurerm_linux_web_app" "appsvc" {
           allowed_origins = try(var.site_config["allowed_origins"], [])
         }
       }
+      application_stack {
+        dotnet_version = "6.0"
+      }
+    
     }
   }
 

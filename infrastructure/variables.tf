@@ -80,15 +80,3 @@ variable connection_string_value {
   description = "(optional) The connection string value"
   sensitive = true
 }
-
-variable ad_client_id {
-  type = string
-  description = "(optional) Azure Active Directory Client ID"
-  sensitive = true
-}
-
-variable ad_client_secret {
-  type = string
-  description = "(optional) Azure Active Directory Client Secret"
-  sensitive = true
-}
