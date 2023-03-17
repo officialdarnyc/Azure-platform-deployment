@@ -54,6 +54,14 @@ resource "azurerm_linux_web_app" "appsvc" {
   identity {
     type = "SystemAssigned"
   }
+
+  logs {
+    application_logs {
+      file_system_level = "Verbose"
+    }
+  }
+
+
 }
 
 
