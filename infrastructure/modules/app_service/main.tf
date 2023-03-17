@@ -59,6 +59,12 @@ resource "azurerm_linux_web_app" "appsvc" {
     application_logs {
       file_system_level = "Verbose"
     }
+    http_logs {
+      file_system {
+        retention_in_days = 0
+        retention_in_mb   = 35
+      }
+    }
   }
 
 
