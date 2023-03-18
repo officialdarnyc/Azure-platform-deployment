@@ -10,6 +10,7 @@ variable "subnets" {
     service_endpoints = list(string)
     delegation_name = optional(string)
     service_delegation_name = optional(string)
+    service_delegation_actions = optional(list(string))
   }))
   description = "Subnets within the VNET"
 }
