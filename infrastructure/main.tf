@@ -67,7 +67,7 @@ module "app_service_plan" {
     resource_group_name           = local.resource_group_name
     location                      = local.location
     os_type                       = "Linux"
-    sku_name                      = "S1"
+    sku_name                      = "B1"
 
     tags                          = local.tags
     
