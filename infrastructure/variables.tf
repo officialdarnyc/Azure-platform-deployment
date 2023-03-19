@@ -1,3 +1,7 @@
+variable "location" {
+  type = string
+  description = "(required) Azure location for deployment"
+}
 
 variable "virtual_network_name" {
   type = string
