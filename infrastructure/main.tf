@@ -36,6 +36,7 @@ module "sqlserver_db" {
     sku_name                           = var.sql_sku_name
     create_mode                        = var.create_mode
     creation_source_database_id        = var.creation_source_database_id
+    restore_dropped_database_id        = var.restore_dropped_database_id
 
     auditstore_primary_blob_endpoint   = module.storage_account.primary_blob_endpoint
     auditstore_primary_access_key      = module.storage_account.primary_access_key
@@ -64,7 +65,7 @@ module "app_service_environment" {
 module "app_service_plan" {
     source = "./modules/app_service_plan"    
 
-    ase_plan_name                 = "${var.app_service_environment_name}-plan"
+    ase_plan_name                 = "${var.app_service_environment_name}-plan-cus"
     app_service_environment_id    = var.use_ase ? module.app_service_environment[0].ase_id : null
     resource_group_name           = local.resource_group_name
     location                      = local.location

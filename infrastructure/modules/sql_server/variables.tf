@@ -41,14 +41,17 @@ variable max_size_gb {
 
 variable create_mode {
   type = string
-  description = "Specifies the mode of database creation. Can be 'Default' or 'Restore'."
-  default = "Default"
+  description = "(required) Specifies the mode of database creation. Can be 'Default' or 'Restore'."
 }
 
 variable creation_source_database_id {
   type = string
   description = "The source database id to restore from."
-  default = null
+}
+
+variable restore_dropped_database_id {
+  type = string
+  description = "(required) The id of the database to be restored"
 }
 
 variable sku_name {
