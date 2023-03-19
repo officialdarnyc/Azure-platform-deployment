@@ -8,7 +8,7 @@ locals {
 
 module "storage_account" {
   source              = "./modules/storage_account"
-  name                = "sqlauditstoreike"
+  name                = "sqlauditstoreikecus"
   resource_group_name = local.resource_group_name
   location            = local.location
   tags                = local.tags

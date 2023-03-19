@@ -1,6 +1,6 @@
 location   = "centralus"
 
-virtual_network_name   = "ic-skedda-vnet"
+virtual_network_name   = "ic-skedda-vnet-cus"
 subnets = {
   "IntegrationSubnet" = {
     address_prefixes           = [ "10.0.1.0/24" ]
@@ -13,11 +13,11 @@ subnets = {
 use_ase                        = false
 
 create_mode                    = "Restore"
-db_name                        = "DotNetAppDB"
-sqlserver_name                 = "AppDBServer-ike"
+db_name                        = "DotNetAppDBcus"
+sqlserver_name                 = "AppDBServer-ike-cus"
 max_size_gb                    = 5
 sql_sku_name                   = "S0"
-appsvc_name                    = "ikedotnetapp01"
+appsvc_name                    = "ikedotnetapp01cus"
 connection_string_name         = "DbConnectionString"
 db_type                        = "SQLServer"
 
