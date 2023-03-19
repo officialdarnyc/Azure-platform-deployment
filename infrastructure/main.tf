@@ -36,7 +36,7 @@ module "sqlserver_db" {
     sku_name                           = var.sql_sku_name
     create_mode                        = var.create_mode
     creation_source_database_id        = var.creation_source_database_id
-    restore_dropped_database_id        = var.restore_dropped_database_id
+    recover_database_id                = var.recover_database_id
 
     auditstore_primary_blob_endpoint   = module.storage_account.primary_blob_endpoint
     auditstore_primary_access_key      = module.storage_account.primary_access_key

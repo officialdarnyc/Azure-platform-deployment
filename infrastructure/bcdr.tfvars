@@ -12,7 +12,7 @@ subnets = {
 }
 use_ase                        = false
 
-create_mode                    = "Restore"
+create_mode                    = "Recovery"
 db_name                        = "DotNetAppDBcus"
 sqlserver_name                 = "AppDBServer-ike-cus"
 max_size_gb                    = 5

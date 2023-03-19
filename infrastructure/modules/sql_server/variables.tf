@@ -49,9 +49,9 @@ variable creation_source_database_id {
   description = "The source database id to restore from."
 }
 
-variable restore_dropped_database_id {
+variable recover_database_id {
   type = string
-  description = "(required) The id of the database to be restored"
+  description = "(required) The id of the database to be restored from  geo-replicated backup"
 }
 
 variable sku_name {

@@ -19,7 +19,7 @@ resource "azurerm_mssql_database" "db" {
   max_size_gb                      = var.max_size_gb
   create_mode                      = var.create_mode
   creation_source_database_id      = var.creation_source_database_id
-  restore_dropped_database_id      = var.restore_dropped_database_id
+  recover_database_id              = var.recover_database_id
   read_scale                       = false
   sku_name                         = var.sku_name  
   zone_redundant                   = var.zone_redundant
