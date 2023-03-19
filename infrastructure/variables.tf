@@ -66,8 +66,9 @@ variable sql_sku_name {
 }
 
 variable app_service_environment_name {
+  type = string
   description = "App Service Environment name"
-  default = null
+  default = "icdotnetenv"
 }
 variable cluster_setting_map {
   default = null
@@ -77,6 +78,7 @@ variable log_analytics_workspace_id { default = "" }
 
 variable use_ase {
   type = bool
+  default = false
 }
 
 variable "appsvc_name" {

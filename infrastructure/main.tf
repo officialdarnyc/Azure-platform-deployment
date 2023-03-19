@@ -64,7 +64,7 @@ module "app_service_plan" {
     source = "./modules/app_service_plan"    
 
     ase_plan_name                 = "${var.app_service_environment_name}-plan"
-    app_service_environment_id    = var.use_ase ? module.app_service_environment[0].ase_id : "null"
+    app_service_environment_id    = var.use_ase ? module.app_service_environment[0].ase_id : null
     resource_group_name           = local.resource_group_name
     location                      = local.location
     os_type                       = "Linux"
