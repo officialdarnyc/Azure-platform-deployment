@@ -17,4 +17,4 @@ steps:
       package: '$(System.DefaultWorkingDirectory)/app/aspnetcoreappv4.zip'
       startupCommand: 'dotnet bin/$(buildConfiguration)/net7.0/aspnetcoreapp.dll'
       appSettings:
-        -DbConnectionString $(db_connection_string)
+        -DbConnectionString "$(db_connection_string)" 
