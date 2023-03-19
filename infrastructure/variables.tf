@@ -1,3 +1,7 @@
+variable "location" {
+  type = string
+  description = "(optional) Azure location for DR"
+}
 
 variable "virtual_network_name" {
   type = string
@@ -52,7 +56,6 @@ variable create_mode {
 variable creation_source_database_id {
   type = string
   description = "The source database id to restore from."
-  default = null
 }
 
 variable sql_sku_name {
@@ -64,7 +67,7 @@ variable sql_sku_name {
 variable app_service_environment_name {
   type = string
   description = "App Service Environment name"
-  default = null
+  default = "icdotnetenv"
 }
 variable cluster_setting_map {
   default = null
@@ -74,6 +77,8 @@ variable log_analytics_workspace_id { default = "" }
 
 variable use_ase {
   type = bool
+  default = false
+  description = "(optional) Specify whether to enable App Svc Environment"
 }
 
 variable "appsvc_name" {
