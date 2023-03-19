@@ -1,16 +1,20 @@
 variable resource_group_name {
+  type = string
   description = "Resource group name that the database will be created in."
 }
 
 variable location {
+  type = string
   description = "The location/region where the database and server are created. Changing this forces a new resource to be created."
 }
 
 variable server_version {
+  type = string
   description = "The version for the database server. Valid values are: 2.0 (for v11 server) and 12.0 (for v12 server)."
   default     = "12.0"
 }
 variable zone_redundant {
+  type = bool
   default = false
 }
 variable db_name {
