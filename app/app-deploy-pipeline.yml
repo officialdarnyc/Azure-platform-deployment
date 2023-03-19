@@ -1,0 +1,20 @@
+
+resources:
+  pipelines:
+  - pipeline: release-pipeline # Name of the pipeline resource.
+    source: platform-pipeline # The name of the pipeline referenced by this pipeline resource.
+    trigger: true
+
+variables:
+- group: SKEDDA-DOTNET
+
+steps:
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'skedda-app'
+      appType: 'webAppLinux'
+      appName: 'ikedotnetapp01'
+      package: '$(System.DefaultWorkingDirectory)/app/aspnetcoreappv4.zip'
+      startupCommand: 'dotnet bin/$(buildConfiguration)/net7.0/aspnetcoreapp.dll'
+      appSettings:
+        -DbConnectionString '$(db_connection_string)'

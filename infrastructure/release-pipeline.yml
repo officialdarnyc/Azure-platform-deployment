@@ -113,23 +113,4 @@ stages:
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
             TF_VAR_sql_admin_username: $(sql_admin_username)
             TF_VAR_sql_admin_password: $(sql_admin_password)
-            TF_VAR_connection_string_value: $(db_connection_string)
-            TF_VAR_creation_source_database_id: $(creation_source_db_id) 
-
-- stage: APP_DEPLOY
-  pool: 
-    vmImage: ubuntu-latest
-  dependsOn: [TF_APPLY]
-  condition: succeeded('TF_APPLY')
-  jobs:
-    - job: App_Deployment
-      displayName: "App deployment"
-      steps:
-        - task: AzureWebApp@1
-          inputs:
-            azureSubscription: 'skedda-app'
-            appType: 'webAppLinux'
-            appName: 'ikedotnetapp01'
-            package: '$(System.DefaultWorkingDirectory)/app/aspnetcoreappv4.zip'
-            startupCommand: 'dotnet bin/$(buildConfiguration)/net7.0/aspnetcoreapp.dll'
-            appSettings: -DbConnectionString $(db_connection_string)                                             
+            TF_VAR_connection_string_value: $(db_connection_string)                                     
