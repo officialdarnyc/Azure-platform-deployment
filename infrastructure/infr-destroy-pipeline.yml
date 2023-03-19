@@ -43,7 +43,7 @@ stages:
             cd $(Build.Repository.LocalPath)/infrastructure
             ./terraform validate
             ./terraform init
-            ./terraform destroy \
+            ./terraform destroy -auto-approve \
             -var-file="terraform.tfvars"
           displayName: Terraform Destroy
           env:
