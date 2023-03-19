@@ -136,7 +136,7 @@ stages:
           inputs:
             azureSubscription: 'skedda-app'
             appType: 'webAppLinux'
-            appName: 'ikedotnetapp01'
+            appName: 'ikedotnetapp01cus'
             package: '$(System.DefaultWorkingDirectory)/app/aspnetcoreappv4.zip'
             startupCommand: 'dotnet bin/$(buildConfiguration)/net7.0/aspnetcoreapp.dll'
             appSettings:
