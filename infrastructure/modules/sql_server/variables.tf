@@ -14,9 +14,11 @@ variable zone_redundant {
   default = false
 }
 variable db_name {
+  type = string
   description = "The name of the database to be created."
 }
 variable db_server_name {
+  type = string
   description ="The Name of the Database server name"
 }
 
@@ -35,6 +37,18 @@ variable license_type {
 variable max_size_gb {
     type = number
     description = "The max size of the database in gigabytes."
+}
+
+variable create_mode {
+  type = string
+  description = "Specifies the mode of database creation. Can be 'Default' or 'Restore'."
+  default = "Default"
+}
+
+variable creation_source_database_id {
+  type = string
+  description = "The source database id to restore from."
+  default = null
 }
 
 variable sku_name {

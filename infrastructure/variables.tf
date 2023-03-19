@@ -43,6 +43,18 @@ variable max_size_gb {
     description = "The max size of the database in gigabytes."
 }
 
+variable create_mode {
+  type = string
+  description = "Specifies the mode of database creation. Can be 'Default' or 'Restore'."
+  default = "Default"
+}
+
+variable creation_source_database_id {
+  type = string
+  description = "The source database id to restore from."
+  default = null
+}
+
 variable sql_sku_name {
     type = string
     description = "Specifies the name of the SKU used by the database"
@@ -52,8 +64,11 @@ variable sql_sku_name {
 variable app_service_environment_name {
   type = string
   description = "App Service Environment name"
+  default = null
 }
-variable cluster_setting_map {}
+variable cluster_setting_map {
+  default = null
+}
 variable site_config {}
 variable log_analytics_workspace_id { default = "" }
 

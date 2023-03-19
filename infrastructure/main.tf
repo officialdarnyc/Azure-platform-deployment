@@ -1,6 +1,6 @@
 locals {
   resource_group_name = "ic"
-  location            = "eastus"
+  location            = var.location
   tags                = {
     environment       = "ic"
   }
@@ -34,6 +34,8 @@ module "sqlserver_db" {
     sql_administrator_login_password   = var.sql_admin_password
     max_size_gb                        = var.max_size_gb
     sku_name                           = var.sql_sku_name
+    create_mode                        = var.create_mode
+    creation_source_database_id        = var.creation_source_database_id
 
     auditstore_primary_blob_endpoint   = module.storage_account.primary_blob_endpoint
     auditstore_primary_access_key      = module.storage_account.primary_access_key
