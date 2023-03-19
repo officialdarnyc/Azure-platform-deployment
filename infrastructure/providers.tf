@@ -10,7 +10,7 @@ terraform {
     resource_group_name  = "ic"
     storage_account_name = "tfbackend01"
     container_name       = "tf-state-container"
-    key                  = "dotnetapp/terraform.tfstate"
+    key                  = "drecoverydotnetapp/terraform.tfstate"
   }
 }
 
