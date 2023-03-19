@@ -66,7 +66,6 @@ variable sql_sku_name {
 }
 
 variable app_service_environment_name {
-  type = string
   description = "App Service Environment name"
   default = null
 }
