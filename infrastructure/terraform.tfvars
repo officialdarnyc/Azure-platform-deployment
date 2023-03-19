@@ -1,4 +1,4 @@
-location   = "centralus"
+location   = "eastus"
 
 virtual_network_name   = "ic-skedda-vnet"
 subnets = {
@@ -12,7 +12,7 @@ subnets = {
 }
 use_ase                        = false
 
-create_mode                    = "Restore"
+create_mode                    = "Default"
 db_name                        = "DotNetAppDB"
 sqlserver_name                 = "AppDBServer-ike"
 max_size_gb                    = 5

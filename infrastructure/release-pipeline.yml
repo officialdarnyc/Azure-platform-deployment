@@ -1,4 +1,5 @@
-trigger: none
+trigger:
+  - release
 
 variables:
 - group: SKEDDA-DOTNET
@@ -36,8 +37,7 @@ stages:
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
             TF_VAR_sql_admin_username: $(sql_admin_username)
             TF_VAR_sql_admin_password: $(sql_admin_password)
-            TF_VAR_connection_string_value: $(db_connection_string)
-            TF_VAR_creation_source_database_id: $(creation_source_db_id)         
+            TF_VAR_connection_string_value: $(db_connection_string)      
 
         - script: |
             export TF_IN_AUTOMATION=true
@@ -45,7 +45,7 @@ stages:
             ./terraform validate
             ./terraform init
             ./terraform plan -out=terraform.tfplan \
-            -var-file="bcdr.tfvars"
+            -var-file="terraform.tfvars"
           displayName: Terraform Plan
           env:
             ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
@@ -57,8 +57,7 @@ stages:
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
             TF_VAR_sql_admin_username: $(sql_admin_username)
             TF_VAR_sql_admin_password: $(sql_admin_password)
-            TF_VAR_connection_string_value: $(db_connection_string)
-            TF_VAR_creation_source_database_id: $(creation_source_db_id)                                                       
+            TF_VAR_connection_string_value: $(db_connection_string)                                                    
 
 - stage: TF_APPLY
   pool: 
@@ -94,8 +93,7 @@ stages:
             AZDO_PERSONAL_ACCESS_TOKEN: $(pat_token)
             TF_VAR_sql_admin_username: $(sql_admin_username)
             TF_VAR_sql_admin_password: $(sql_admin_password)
-            TF_VAR_connection_string_value: $(db_connection_string)
-            TF_VAR_creation_source_database_id: $(creation_source_db_id)                          
+            TF_VAR_connection_string_value: $(db_connection_string)                       
 
         - script: |
             export TF_IN_AUTOMATION=true
@@ -103,7 +101,7 @@ stages:
             ./terraform validate
             ./terraform init
             ./terraform apply -auto-approve \
-            -var-file="bcdr.tfvars"
+            -var-file="terraform.tfvars"
           displayName: Terraform Apply
           env:
             ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
@@ -126,7 +124,6 @@ stages:
   jobs:
     - job: App_Deployment
       displayName: "App deployment"
-      timeoutInMinutes: 150
       steps:
         - task: AzureWebApp@1
           inputs:
@@ -134,4 +131,5 @@ stages:
             appType: 'webAppLinux'
             appName: 'ikedotnetapp01'
             package: '$(System.DefaultWorkingDirectory)/app/aspnetcoreappv4.zip'
-            startupCommand: 'dotnet bin/$(buildConfiguration)/net7.0/aspnetcoreapp.dll'                                                
+            startupCommand: 'dotnet bin/$(buildConfiguration)/net7.0/aspnetcoreapp.dll'
+            appSettings: -DbConnectionString $(db_connection_string)                                             
