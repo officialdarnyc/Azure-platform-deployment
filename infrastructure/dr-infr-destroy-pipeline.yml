@@ -38,7 +38,7 @@ stages:
             TF_VAR_sql_admin_password: $(sql_admin_password)
             TF_VAR_connection_string_value: $(db_connection_string)
             TF_VAR_creation_source_database_id: $(creation_source_db_id)
-            TF_VAR_recover_database_id: $(creation_source_db_id)                  
+            TF_VAR_recover_database_id: $(recover_database_id)                  
 
         - script: |
             export TF_IN_AUTOMATION=true
@@ -60,4 +60,4 @@ stages:
             TF_VAR_sql_admin_password: $(sql_admin_password)
             TF_VAR_connection_string_value: $(db_connection_string)
             TF_VAR_creation_source_database_id: $(creation_source_db_id)
-            TF_VAR_recover_database_id: $(creation_source_db_id)               
+            TF_VAR_recover_database_id: $(recover_database_id)               
