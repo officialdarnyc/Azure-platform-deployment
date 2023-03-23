@@ -28,7 +28,7 @@ stages:
             ./terraform init
           displayName: Terraform Initialize
           env:
-            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_TENANT_ID: $(tenant_id)
             ARM_SUBSCRIPTION_ID: $(subscription_id)
             ARM_CLIENT_ID: $(client_id)
             ARM_CLIENT_SECRET: $(client_secret)
@@ -48,7 +48,7 @@ stages:
             -var-file="terraform.tfvars"
           displayName: Terraform Plan
           env:
-            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_TENANT_ID: $(tenant_id)
             ARM_SUBSCRIPTION_ID: $(subscription_id)
             ARM_CLIENT_ID: $(client_id)
             ARM_CLIENT_SECRET: $(client_secret)
@@ -84,7 +84,7 @@ stages:
             ./terraform init
           displayName: Terraform Initialize
           env:
-            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_TENANT_ID: $(tenant_id)
             ARM_SUBSCRIPTION_ID: $(subscription_id)
             ARM_CLIENT_ID: $(client_id)
             ARM_CLIENT_SECRET: $(client_secret)
@@ -104,7 +104,7 @@ stages:
             -var-file="terraform.tfvars"
           displayName: Terraform Apply
           env:
-            ARM_TENANT_ID: 58a82b7b-bd43-4950-8699-bbaa5d0ff52b
+            ARM_TENANT_ID: $(tenant_id)
             ARM_SUBSCRIPTION_ID: $(subscription_id)
             ARM_CLIENT_ID: $(client_id)
             ARM_CLIENT_SECRET: $(client_secret)

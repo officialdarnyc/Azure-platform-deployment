@@ -15,6 +15,6 @@ steps:
       appType: 'webAppLinux'
       appName: 'ikedotnetapp01'
       package: '$(System.DefaultWorkingDirectory)/app/aspnetcoreappv4.zip'
-      startupCommand: 'dotnet bin/$(buildConfiguration)/net7.0/aspnetcoreapp.dll'
+      startupCommand: 'dotnet bin/$(buildConfiguration)/net7.0/aspnetcoreapp.dll' #buildConfiguration value is set to Debug
       appSettings:
         -DbConnectionString "$(db_connection_string)" 
